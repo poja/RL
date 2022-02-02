@@ -25,7 +25,7 @@ pub enum Color {
 }
 
 const BOARD_SIZE: usize = 11;
-type Location = (usize, usize);
+pub type Location = (usize, usize);
 
 #[derive(Clone)]
 pub struct HexPosition {
@@ -67,7 +67,7 @@ impl HexPosition {
 }
 
 pub trait HexPlayer {
-    fn next_move(&self, position: &HexPosition) -> Location;
+    fn next_move(&mut self, position: &HexPosition) -> Location;
 }
 
 pub struct HexGame<'a> {
@@ -240,7 +240,7 @@ impl HexPlayerRand {
 }
 
 impl HexPlayer for HexPlayerRand {
-    fn next_move(&self, position: &HexPosition) -> Location {
+    fn next_move(&mut self, position: &HexPosition) -> Location {
         let mut rng = rand::thread_rng();
         loop {
             let i = rng.gen_range(0..BOARD_SIZE);
@@ -277,7 +277,7 @@ fn read_usize() -> usize {
 }
 
 impl HexPlayer for HexPlayerCmd {
-    fn next_move(&self, position: &HexPosition) -> Location {
+    fn next_move(&mut self, position: &HexPosition) -> Location {
         println!("Current position:");
         position.print();
 

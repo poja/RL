@@ -1,5 +1,6 @@
 mod hex_game;
 mod hex_test;
+mod mcts;
 
 use hex_game::{Color, HexGame, HexPlayerCmd, HexPlayerRand, HexPosition};
 
